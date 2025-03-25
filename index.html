@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<style>
+  /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background-color: #ECEEEB;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.);
+}
+
+header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #002D8E;
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+}
+
+header .menu-icon {
+    display: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+header .dropdown-menu {
+    text-decoration: none;
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 5%;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px 20px;
+    z-index: 10;
+}
+
+header .dropdown-menu a {
+  text-decoration: none;
+    display: block;
+    margin: 10px 0;
+    color: black;
+    font-size: 17px;
+}
+
+header .dropdown-menu.active {
+   text-decoration: none;
+    display: block;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 5%;
+    background: #ECEEEB;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.hero-content p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; /* You can adjust the max-width as needed */
+}
+
+.search-bar input {
+    padding: 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px 0px 0px 10px; /* Rounded left corners */
+}
+
+.search-bar button {
+    padding: 19px 25px;
+    background-color: #1a2d56;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0px 10px 10px 0px; /* Rounded right corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar button i {
+    font-size: 1.2em;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.book-details {
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Best Seller Section */
+.best-sellers {
+    padding: 30px 5%;
+    background-color: #fff;
+}
+
+.best-sellers h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    color: #333;
+}
+
+/* Scrollable Best Seller Books Section */
+.book-list {
+    display: flex;
+    gap: 40px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding-bottom: 10px;
+    white-space: nowrap; /* Prevent wrapping */
+    scroll-snap-type: x mandatory; /* Smooth scrolling */
+}
+
+.book-card {
+    flex: 0 0 auto; /* Ensure cards don't shrink */
+    width: 200px; /* Fixed width for each book card */
+    scroll-snap-align: start; /* Align cards when scrolling */
+    background: ;
+    padding: 15px;
+    
+    text-align: center;
+    border-radius: 5px;
+}
+
+.book-card img {
+    max-width: 100%;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.book-card h3 {
+    margin: 10px 0 5px;
+}
+
+.book-card p {
+    color: #1a2d56;
+    font-weight: bold;
+} 
+
+/* Ensure full height for body and html */
+html, body {
+    height: 100%;
+}
+
+/* Main content takes up available space */
+main {
+    flex: 1;
+}
+
+/* Footer styling */
+footer {
+    background-color: #f9f9f9;
+    padding: 30px 10%;
+    color: #333;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+    margin-top: auto; /* Ensures footer stays at the bottom */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-column h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #1a2d56;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #1a2d56;
+}
+
+.social-icons i {
+    margin-right: 10px;
+    font-size: 20px; /* Adjust icon size */
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    color: #777;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    header nav {
+        display: none;
+    }
+
+    header .menu-icon {
+        display: block;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .hero-image img {
+        width: 80%;
+    }
+}
+</style>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">StoryWave</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Pages</a>
+            <a href="#">Shop</a>
+            <a href="#">Blog</a>
+        </nav>
+        <i class="bi bi-view-list menu-icon"></i>
+        <div class="dropdown-menu">
+            <a href="#">Home</a>
+            <a href="#">Pages</a>
+            <a href="#">Shop</a>
+            <a href="#">Blog</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Read, Discover, and Get Lost in Stories</h1>
+            <p>From exciting stories to classic favorites, we make it easy to find your next great read. We offer only the best books for you.</p>
+            
+        <div class="search-bar">
+    <input type="text" placeholder="Search for a book">
+    <button class="search-btn"><i class="bi bi-search"></i></button>
+</div>
+        </div>
+        <div class="hero-image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREEG6S19vAOR-31IJBAVUlXnoTrLjnzv8FAy13PWvKsbYPq6AcHL3Lg6Uh&s=10" alt="Book Cover">
+            <div class="book-details">
+                <h3>Gone Dead</h3>
+                <p>CD Arnold</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Seller Books Section -->
+    <section class="best-sellers">
+        <h2>most Readed Books</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREEG6S19vAOR-31IJBAVUlXnoTrLjnzv8FAy13PWvKsbYPq6AcHL3Lg6Uh&s=10" alt="Book 1">
+                <h3>Roney Made</h3>
+                <p>Royal Miles</p>
+                <p>$10.00</p>
+            </div>
+            <div class="book-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZDvG4g_BqsTKfmRhUMN8jXbdqbfzh7PkxA&usqp=CAU" alt="Book 2">
+                <h3>Draw Now!</h3>
+                <p>Arlene McCoy</p>
+                <p>$12.00</p>
+            </div>
+            <div class="book-card">
+                <img src="https://images.squarespace-cdn.com/content/v1/5d365651a8494f0001bb6011/1692478625106-OWVHBOU5HAUPY5ZEX6LY/the-huntsman-cover5.jpg?format=500w" alt="Book 3">
+                <h3>Rope Dusk</h3>
+                <p>Mark Joe</p>
+                <p>$15.00</p>
+            </div>
+            <div class="book-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTj1Ay37HjFDPW_YtmtdnEx6cHPTNsILt_Lw&usqp=CAU" alt="Book 4">
+                <h3>Snow Gas</h3>
+                <p>Kaitlyn F. Bell</p>
+                <p>$8.00</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Book Collection Section -->
+<section style="background-color: #f1f5f9; padding: 40px 5%; text-align: center;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
+        <div style="flex: 1; min-width: 300px; text-align: left; padding: 20px;">
+            <h2 style="font-size: 2em; color: #1a2d56; margin-bottom: 10px;">Most Demanded Book </h2>
+            <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">
+                Recognizing outstanding literary fiction, this book has captivated audiences and earned its place as a must-read classic.
+            </p>
+            <button style="padding: 10px 20px; background-color: #1a2d56; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                Explore Now
+            </button>
+        </div>
+        <div style="flex: 1; min-width: 300px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZKu2uXicdHlBSf0nHkABuYaLcjlGrw1hbTw&s" alt="Awarded Book" style="max-width: 100%; height: auto; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);">
+        </div>
+    </div>
+</section>
+    
+    
+        <!-- other  Books Section -->
+    <section class="best-sellers">
+        <h2> Other Books</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREEG6S19vAOR-31IJBAVUlXnoTrLjnzv8FAy13PWvKsbYPq6AcHL3Lg6Uh&s=10" alt="Book 1">
+                <h3>Roney Made</h3>
+                <p>Royal Miles</p>
+                <p>$10.00</p>
+            </div>
+            <div class="book-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZDvG4g_BqsTKfmRhUMN8jXbdqbfzh7PkxA&usqp=CAU" alt="Book 2">
+                <h3>Draw Now!</h3>
+                <p>Arlene McCoy</p>
+                <p>$12.00</p>
+            </div>
+            <div class="book-card">
+                <img src="https://images.squarespace-cdn.com/content/v1/5d365651a8494f0001bb6011/1692478625106-OWVHBOU5HAUPY5ZEX6LY/the-huntsman-cover5.jpg?format=500w" alt="Book 3">
+                <h3>Rope Dusk</h3>
+                <p>Mark Joe</p>
+                <p>$15.00</p>
+            </div>
+            <div class="book-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTj1Ay37HjFDPW_YtmtdnEx6cHPTNsILt_Lw&usqp=CAU" alt="Book 4">
+                <h3>Snow Gas</h3>
+                <p>Kaitlyn F. Bell</p>
+                <p>$8.00</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>About Us</h4>
+                <p>We love stories and want to share them with you. Our website makes it easy to find and enjoy books of all kinds, from classics to new releases. Whether you’re a big reader or just looking for something to read, we’ve got something for you.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Payment Options</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Social Networks</h4>
+                <div class="social-icons">
+                    <!-- Instagram Icon using Bootstrap -->
+                    <a href="#" class="social-link">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="bi bi-twitter"></i> 
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Story Reading Website. All Rights Reserved.</p>
+            <p>Terms & Conditions | Privacy & Policy</p>
+        </div>
+    </footer>
+
+    <script>
+      document.querySelector('.menu-icon').addEventListener('click', () => {
+          document.querySelector('.dropdown-menu').classList.toggle('active');
+      });
+    </script>
+</body>
+  </html>
